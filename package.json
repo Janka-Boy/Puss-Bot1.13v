@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "discord.js": "^13.1.0"
+  },
+  "name": "pussy-bot1.13v",
+  "version": "0.0.1",
+  "description": "Puss bot ",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Janka-Boy/Pussy-Bot.git"
+  },
+  "keywords": [
+    "PS"
+  ],
+  "author": "JanKa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Janka-Boy/Pussy-Bot/issues"
+  },
+  "homepage": "https://github.com/Janka-Boy/Pussy-Bot#readme"
+}
