@@ -4,7 +4,10 @@ const { token } = require('./config.json');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('Bot is on...');
 });
+client.on('message', () => {
+	
+} )
 
 client.login(token);
