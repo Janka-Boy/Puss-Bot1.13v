@@ -1,23 +1,20 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const config = require('./config.json');
-const {prefix} = require('./config.json');
-
 
 const intents = new Discord.Intents(32767)
 const client = new Discord.Client({ intents });
 
-client.commands = new Discord.Collection()
-
+client.commands = new Discord.Collection();
 const commandsFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+//komandas file kurus paņem no commands mapes un pārbauda vai tie beidzas ar .js
+const {prefix, token} = require('./config.json');
 
-for (const file of commandsFiles) {
-	const command = require(`./commands/${file}`);
-	// command = no mapes commands faili kas biedzas ar .js
-	
-	client.commands.set(command.name, command);
-};
 
+//mogoose
+
+client.on("ready", () => {
+	client.user.setPresence({activity:{name:'Hentai', type: 3}, status:'dnd'})
+})
 for (const file of commandsFiles) {
 	const command = require(`./commands/${file}`);
 	// command = no mapes commands faili kas biedzas ar .js
@@ -43,9 +40,6 @@ client.on('messageCreate', message => {//kad klients strādā
 });
 
 
-client.on("ready", () => {
-	console.log('Bot is on!!!')
-})
 
-
-client.login(config.token);
+console.log("Bot is on...");
+client.login(token);
