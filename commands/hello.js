@@ -4,6 +4,6 @@ module.exports = {
     descriton: 'sipmle hello',
 
     execute(message, args){
-        message.channel.replay('It accully worked')
+        message.reply('It accully worked')
     }
 }

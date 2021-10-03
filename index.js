@@ -16,29 +16,28 @@ const {prefix, token} = require('./config.json');
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
-	// Set a new item in the Collection
-	// With the key as the command name and the value as the exported module
+	// command = no mapes commands faili kas biedzas ar .js
+	
 	client.commands.set(command.name, command);
-	console.log(client.commands)
-}
-client.on("message", (msg) => {
-	if(!msg.content.startsWith(prefix)){
-		return
-	}
-	const command = client.command.get(command.name, command)
-	console.log(command)
-	if(!command){
-		return
-	}
-	try{
-		command.execute(message)
-	} catch(error){
-		console.log(error)
-		message.channel.send('Error acurred while getin comand')
-	}
+};
 
+client.on('messageCreate', message => {//kad klients strādā
+	
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const command = args.shift()        //.toLowerCase(); I mean es izlēdzu jo man vajadzēja 1 komandai
+
+	if (!client.commands.has(command)) return;
+//error check
+	try {
+		client.commands.get(command).execute(message, args);
+	} catch (error) {
+		console.error(error);
+		message.reply('something went wrong, your trash at this');
+	
+	}
 })
-
 /*client.on('messageCreate', message => {
 	if (!message.content.startsWith(prefix)) return;
 
@@ -62,4 +61,4 @@ client.on("message", (msg) => {
 
 
 console.log("Bot is on...");
-client.login(token);
+client.login(token)
