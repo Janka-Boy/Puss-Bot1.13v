@@ -6,7 +6,7 @@
     "discord.js": "^13.1.0"
   },
   "name": "pussy-bot1.13v",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Puss bot ",
   "main": "index.js",
   "scripts": {
