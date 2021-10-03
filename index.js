@@ -5,39 +5,59 @@ const intents = new Discord.Intents(32767)
 const client = new Discord.Client({ intents });
 
 client.commands = new Discord.Collection();
-const commandsFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 //komandas file kurus paņem no commands mapes un pārbauda vai tie beidzas ar .js
 const {prefix, token} = require('./config.json');
 
 
 //mogoose
 
-client.on("ready", () => {
-	client.user.setPresence({activity:{name:'Hentai', type: 3}, status:'dnd'})
-})
-for (const file of commandsFiles) {
+
+
+for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
-	// command = no mapes commands faili kas biedzas ar .js
-	
+	// Set a new item in the Collection
+	// With the key as the command name and the value as the exported module
 	client.commands.set(command.name, command);
-};
+	console.log(client.commands)
+}
+client.on("message", (msg) => {
+	if(!msg.content.startsWith(prefix)){
+		return
+	}
+	const command = client.command.get(command.name, command)
+	console.log(command)
+	if(!command){
+		return
+	}
+	try{
+		command.execute(message)
+	} catch(error){
+		console.log(error)
+		message.channel.send('Error acurred while getin comand')
+	}
 
-client.on('messageCreate', message => {//kad klients strādā
-	
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+})
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
-	const command = args.shift()        //.toLowerCase(); I mean es izlēdzu jo man vajadzēja 1 komandai
+/*client.on('messageCreate', message => {
+	if (!message.content.startsWith(prefix)) return;
 
-	if (!client.commands.has(command)) return;
-//error check
+	const command = client.commands.get(message.name, command);
+	console.log(command)
+
+	if (!command) return;
+	console.log(command)
+
 	try {
-		client.commands.get(command).execute(message, args);
+		command.execute(message, args);
 	} catch (error) {
 		console.error(error);
-		message.reply('something went wrong, your trash at this');
+		message.channel.send({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
-});
+});*/
+
+
+
 
 
 

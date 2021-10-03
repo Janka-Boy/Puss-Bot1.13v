@@ -2,7 +2,7 @@ module.exports = {
     name : 'help',
     descriton: 'simple bot description',
     
-    async execute(message){
+    execute(message, args){
         console.log('command got executed')
         message.channel.send('hello')
     }
