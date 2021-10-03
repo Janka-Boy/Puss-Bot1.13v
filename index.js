@@ -38,27 +38,6 @@ client.on('messageCreate', message => {//kad klients strādā
 	
 	}
 })
-/*client.on('messageCreate', message => {
-	if (!message.content.startsWith(prefix)) return;
-
-	const command = client.commands.get(message.name, command);
-	console.log(command)
-
-	if (!command) return;
-	console.log(command)
-
-	try {
-		command.execute(message, args);
-	} catch (error) {
-		console.error(error);
-		message.channel.send({ content: 'There was an error while executing this command!', ephemeral: true });
-	}
-});*/
-
-
-
-
-
 
 console.log("Bot is on...");
 client.login(token)
