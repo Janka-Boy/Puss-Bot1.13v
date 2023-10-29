@@ -10,10 +10,6 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 const {prefix, token} = require('./config.json');
 
 
-//mogoose
-
-
-
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	// command = no mapes commands faili kas biedzas ar .js
@@ -26,10 +22,10 @@ client.on('messageCreate', message => {//kad klients strādā
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
-	const command = args.shift()        //.toLowerCase(); I mean es izlēdzu jo man vajadzēja 1 komandai
+	const command = args.shift()        //.toLowerCase(); I mean es izlēdzu jo man vajadzēja vienai komandai
 
 	if (!client.commands.has(command)) return;
-//error check
+//error catching
 	try {
 		client.commands.get(command).execute(message, args);
 	} catch (error) {
