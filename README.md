@@ -1,7 +1,7 @@
 # Pussy-Bot1.13v | Development closed
 🟥
 
-Bot that help me learn javasript and makes learning more process more fun
+Bot that helps me learn javasript and makes learning process more fun
 
 This bot is for personal use I will not be giving any invites if someone asks
 
